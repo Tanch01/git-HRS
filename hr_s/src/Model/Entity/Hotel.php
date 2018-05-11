@@ -9,20 +9,17 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $address
- * @property string $e-mail
+ * @property string $email
  * @property int $contact_num
  * @property string $description
  * @property string $images
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property int $room_id
- * @property int $customer_id
- * @property int $manager_id
+ * @property int $users_id
  *
+ * @property \App\Model\Entity\Reservation[] $reservations
  * @property \App\Model\Entity\Room[] $rooms
- * @property \App\Model\Entity\Customer[] $customers
- * @property \App\Model\Entity\Manager[] $managers
- * @property \App\Model\Entity\Admin[] $admin
+ * @property \App\Model\Entity\User[] $users
  */
 class Hotel extends Entity
 {
@@ -39,18 +36,15 @@ class Hotel extends Entity
     protected $_accessible = [
         'name' => true,
         'address' => true,
-        'e-mail' => true,
+        'email' => true,
         'contact_num' => true,
         'description' => true,
         'images' => true,
         'created' => true,
         'modified' => true,
-        'room_id' => true,
-        'customer_id' => true,
-        'manager_id' => true,
+        'users_id' => true,
+        'reservations' => true,
         'rooms' => true,
-        'customers' => true,
-        'managers' => true,
-        'admin' => true
+        'users' => true
     ];
 }

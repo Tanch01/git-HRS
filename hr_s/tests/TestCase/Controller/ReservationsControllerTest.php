@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\AdminController;
+use App\Controller\ReservationsController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\AdminController Test Case
+ * App\Controller\ReservationsController Test Case
  */
-class AdminControllerTest extends IntegrationTestCase
+class ReservationsControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,9 +16,9 @@ class AdminControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.admin',
-        'app.managers',
-        'app.customers',
+        'app.reservations',
+        'app.rooms',
+        'app.users',
         'app.hotels'
     ];
 

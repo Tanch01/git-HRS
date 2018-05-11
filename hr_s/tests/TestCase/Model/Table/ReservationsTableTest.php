@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ManagersTable;
+use App\Model\Table\ReservationsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ManagersTable Test Case
+ * App\Model\Table\ReservationsTable Test Case
  */
-class ManagersTableTest extends TestCase
+class ReservationsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ManagersTable
+     * @var \App\Model\Table\ReservationsTable
      */
-    public $Managers;
+    public $Reservations;
 
     /**
      * Fixtures
@@ -24,10 +24,10 @@ class ManagersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.managers',
-        'app.customers',
-        'app.hotels',
-        'app.admin'
+        'app.reservations',
+        'app.rooms',
+        'app.users',
+        'app.hotels'
     ];
 
     /**
@@ -38,8 +38,8 @@ class ManagersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Managers') ? [] : ['className' => ManagersTable::class];
-        $this->Managers = TableRegistry::get('Managers', $config);
+        $config = TableRegistry::exists('Reservations') ? [] : ['className' => ReservationsTable::class];
+        $this->Reservations = TableRegistry::get('Reservations', $config);
     }
 
     /**
@@ -49,7 +49,7 @@ class ManagersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Managers);
+        unset($this->Reservations);
 
         parent::tearDown();
     }

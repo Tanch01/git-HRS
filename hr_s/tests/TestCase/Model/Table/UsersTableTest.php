@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AdminTable;
+use App\Model\Table\UsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AdminTable Test Case
+ * App\Model\Table\UsersTable Test Case
  */
-class AdminTableTest extends TestCase
+class UsersTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AdminTable
+     * @var \App\Model\Table\UsersTable
      */
-    public $Admin;
+    public $Users;
 
     /**
      * Fixtures
@@ -24,10 +24,9 @@ class AdminTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.admin',
-        'app.managers',
-        'app.customers',
-        'app.hotels'
+        'app.users',
+        'app.hotels',
+        'app.reservations'
     ];
 
     /**
@@ -38,8 +37,8 @@ class AdminTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Admin') ? [] : ['className' => AdminTable::class];
-        $this->Admin = TableRegistry::get('Admin', $config);
+        $config = TableRegistry::exists('Users') ? [] : ['className' => UsersTable::class];
+        $this->Users = TableRegistry::get('Users', $config);
     }
 
     /**
@@ -49,7 +48,7 @@ class AdminTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Admin);
+        unset($this->Users);
 
         parent::tearDown();
     }

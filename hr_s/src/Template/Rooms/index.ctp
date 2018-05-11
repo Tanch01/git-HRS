@@ -10,8 +10,8 @@
         <li><?= $this->Html->link(__('New Room'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Hotels'), ['controller' => 'Hotels', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Hotel'), ['controller' => 'Hotels', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="rooms index large-9 medium-8 columns content">
@@ -27,7 +27,6 @@
                 <th scope="col"><?= $this->Paginator->sort('room_avi') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('hotel_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('customer_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -41,8 +40,7 @@
                 <td><?= h($room->images) ?></td>
                 <td><?= h($room->room_avi) ?></td>
                 <td><?= h($room->created) ?></td>
-                <td><?= $this->Number->format($room->hotel_id) ?></td>
-                <td><?= $this->Number->format($room->customer_id) ?></td>
+                <td><?= $room->has('hotel') ? $this->Html->link($room->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $room->hotel->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $room->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $room->id]) ?>

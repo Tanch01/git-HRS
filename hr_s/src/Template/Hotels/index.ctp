@@ -8,14 +8,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Hotel'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Rooms'), ['controller' => 'Rooms', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Room'), ['controller' => 'Rooms', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Managers'), ['controller' => 'Managers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Manager'), ['controller' => 'Managers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Admin'), ['controller' => 'Admin', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admin', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="hotels index large-9 medium-8 columns content">
@@ -26,15 +24,13 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('e-mail') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('contact_num') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('description') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('images') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('room_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('customer_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('manager_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('users_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -44,15 +40,13 @@
                 <td><?= $this->Number->format($hotel->id) ?></td>
                 <td><?= h($hotel->name) ?></td>
                 <td><?= h($hotel->address) ?></td>
-                <td><?= h($hotel->e-mail) ?></td>
+                <td><?= h($hotel->email) ?></td>
                 <td><?= $this->Number->format($hotel->contact_num) ?></td>
                 <td><?= h($hotel->description) ?></td>
                 <td><?= h($hotel->images) ?></td>
                 <td><?= h($hotel->created) ?></td>
                 <td><?= h($hotel->modified) ?></td>
-                <td><?= $this->Number->format($hotel->room_id) ?></td>
-                <td><?= $this->Number->format($hotel->customer_id) ?></td>
-                <td><?= $this->Number->format($hotel->manager_id) ?></td>
+                <td><?= $this->Number->format($hotel->users_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $hotel->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id]) ?>

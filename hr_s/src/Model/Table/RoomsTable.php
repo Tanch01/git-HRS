@@ -10,9 +10,7 @@ use Cake\Validation\Validator;
  * Rooms Model
  *
  * @property \App\Model\Table\HotelsTable|\Cake\ORM\Association\BelongsTo $Hotels
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\BelongsTo $Customers
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\HasMany $Customers
- * @property \App\Model\Table\HotelsTable|\Cake\ORM\Association\HasMany $Hotels
+ * @property \App\Model\Table\ReservationsTable|\Cake\ORM\Association\HasMany $Reservations
  *
  * @method \App\Model\Entity\Room get($primaryKey, $options = [])
  * @method \App\Model\Entity\Room newEntity($data = null, array $options = [])
@@ -47,14 +45,7 @@ class RoomsTable extends Table
             'foreignKey' => 'hotel_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Customers', [
-            'foreignKey' => 'customer_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Customers', [
-            'foreignKey' => 'room_id'
-        ]);
-        $this->hasMany('Hotels', [
+        $this->hasMany('Reservations', [
             'foreignKey' => 'room_id'
         ]);
     }
@@ -112,7 +103,6 @@ class RoomsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['hotel_id'], 'Hotels'));
-        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }

@@ -25,15 +25,12 @@ class RoomsFixture extends TestFixture
         'room_avi' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'timestamp', 'length' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         'hotel_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'customer_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'Rooms_fk0' => ['type' => 'index', 'columns' => ['hotel_id'], 'length' => []],
-            'Rooms_fk1' => ['type' => 'index', 'columns' => ['customer_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'Rooms_fk0' => ['type' => 'foreign', 'columns' => ['hotel_id'], 'references' => ['hotels', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'Rooms_fk1' => ['type' => 'foreign', 'columns' => ['customer_id'], 'references' => ['hotels', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -57,9 +54,8 @@ class RoomsFixture extends TestFixture
                 'description' => 'Lorem ipsum dolor sit amet',
                 'images' => 'Lorem ipsum dolor sit amet',
                 'room_avi' => 1,
-                'created' => 1525944261,
-                'hotel_id' => 1,
-                'customer_id' => 1
+                'created' => 1526030042,
+                'hotel_id' => 1
             ],
         ];
         parent::init();

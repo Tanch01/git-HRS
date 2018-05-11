@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Customer Entity
+ * User Entity
  *
  * @property int $id
  * @property string $username
@@ -12,22 +12,15 @@ use Cake\ORM\Entity;
  * @property string $lastname
  * @property string $firstname
  * @property string $middlename
- * @property string $address
- * @property string $gender
- * @property string $e-mail
- * @property int $contact_num
+ * @property string $email
+ * @property int $contact_number
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property int $hotel_id
- * @property int $room_id
- * @property int $manager_id
  *
  * @property \App\Model\Entity\Hotel[] $hotels
- * @property \App\Model\Entity\Room[] $rooms
- * @property \App\Model\Entity\Manager[] $managers
- * @property \App\Model\Entity\Admin[] $admin
+ * @property \App\Model\Entity\Reservation[] $reservations
  */
-class Customer extends Entity
+class User extends Entity
 {
 
     /**
@@ -45,19 +38,12 @@ class Customer extends Entity
         'lastname' => true,
         'firstname' => true,
         'middlename' => true,
-        'address' => true,
-        'gender' => true,
-        'e-mail' => true,
-        'contact_num' => true,
+        'email' => true,
+        'contact_number' => true,
         'created' => true,
         'modified' => true,
-        'hotel_id' => true,
-        'room_id' => true,
-        'manager_id' => true,
         'hotels' => true,
-        'rooms' => true,
-        'managers' => true,
-        'admin' => true
+        'reservations' => true
     ];
 
     /**

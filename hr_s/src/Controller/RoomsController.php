@@ -20,6 +20,9 @@ class RoomsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Hotels']
+        ];
         $rooms = $this->paginate($this->Rooms);
 
         $this->set(compact('rooms'));
@@ -35,7 +38,7 @@ class RoomsController extends AppController
     public function view($id = null)
     {
         $room = $this->Rooms->get($id, [
-            'contain' => ['Hotels', 'Customers']
+            'contain' => ['Hotels', 'Reservations']
         ]);
 
         $this->set('room', $room);
@@ -58,7 +61,8 @@ class RoomsController extends AppController
             }
             $this->Flash->error(__('The room could not be saved. Please, try again.'));
         }
-        $this->set(compact('room'));
+        $hotels = $this->Rooms->Hotels->find('list', ['limit' => 200]);
+        $this->set(compact('room', 'hotels'));
     }
 
     /**
@@ -82,7 +86,8 @@ class RoomsController extends AppController
             }
             $this->Flash->error(__('The room could not be saved. Please, try again.'));
         }
-        $this->set(compact('room'));
+        $hotels = $this->Rooms->Hotels->find('list', ['limit' => 200]);
+        $this->set(compact('room', 'hotels'));
     }
 
     /**

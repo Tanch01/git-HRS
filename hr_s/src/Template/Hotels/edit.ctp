@@ -14,14 +14,12 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Hotels'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Rooms'), ['controller' => 'Rooms', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Room'), ['controller' => 'Rooms', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Managers'), ['controller' => 'Managers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Manager'), ['controller' => 'Managers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Admin'), ['controller' => 'Admin', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admin', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="hotels form large-9 medium-8 columns content">
@@ -31,13 +29,11 @@
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('address');
-            echo $this->Form->control('e-mail');
+            echo $this->Form->control('email');
             echo $this->Form->control('contact_num');
             echo $this->Form->control('description');
             echo $this->Form->control('images');
-            echo $this->Form->control('room_id');
-            echo $this->Form->control('customer_id');
-            echo $this->Form->control('manager_id');
+            echo $this->Form->control('users_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -17,10 +17,9 @@ class HotelsControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.hotels',
+        'app.reservations',
         'app.rooms',
-        'app.customers',
-        'app.managers',
-        'app.admin'
+        'app.users'
     ];
 
     /**

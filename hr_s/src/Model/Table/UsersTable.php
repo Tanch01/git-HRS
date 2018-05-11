@@ -7,25 +7,21 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Managers Model
+ * Users Model
  *
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\BelongsTo $Customers
- * @property \App\Model\Table\HotelsTable|\Cake\ORM\Association\BelongsTo $Hotels
- * @property \App\Model\Table\AdminTable|\Cake\ORM\Association\HasMany $Admin
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\HasMany $Customers
- * @property \App\Model\Table\HotelsTable|\Cake\ORM\Association\HasMany $Hotels
+ * @property \App\Model\Table\ReservationsTable|\Cake\ORM\Association\HasMany $Reservations
  *
- * @method \App\Model\Entity\Manager get($primaryKey, $options = [])
- * @method \App\Model\Entity\Manager newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Manager[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Manager|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Manager patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Manager[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Manager findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\User get($primaryKey, $options = [])
+ * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class ManagersTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -38,28 +34,14 @@ class ManagersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('managers');
+        $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Customers', [
-            'foreignKey' => 'customer_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Hotels', [
-            'foreignKey' => 'hotel_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Admin', [
-            'foreignKey' => 'manager_id'
-        ]);
-        $this->hasMany('Customers', [
-            'foreignKey' => 'manager_id'
-        ]);
-        $this->hasMany('Hotels', [
-            'foreignKey' => 'manager_id'
+        $this->hasMany('Reservations', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -107,15 +89,14 @@ class ManagersTable extends Table
             ->notEmpty('middlename');
 
         $validator
-            ->scalar('e-mail')
-            ->maxLength('e-mail', 225)
-            ->requirePresence('e-mail', 'create')
-            ->notEmpty('e-mail');
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
-            ->integer('contact_num')
-            ->requirePresence('contact_num', 'create')
-            ->notEmpty('contact_num');
+            ->integer('contact_number')
+            ->requirePresence('contact_number', 'create')
+            ->notEmpty('contact_number');
 
         return $validator;
     }
@@ -130,8 +111,7 @@ class ManagersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
-        $rules->add($rules->existsIn(['hotel_id'], 'Hotels'));
+        $rules->add($rules->isUnique(['email']));
 
         return $rules;
     }

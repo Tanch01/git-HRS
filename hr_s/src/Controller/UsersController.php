@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Hotels Controller
+ * Users Controller
  *
- * @property \App\Model\Table\HotelsTable $Hotels
+ * @property \App\Model\Table\UsersTable $Users
  *
- * @method \App\Model\Entity\Hotel[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class HotelsController extends AppController
+class UsersController extends AppController
 {
 
     /**
@@ -20,25 +20,25 @@ class HotelsController extends AppController
      */
     public function index()
     {
-        $hotels = $this->paginate($this->Hotels);
+        $users = $this->paginate($this->Users);
 
-        $this->set(compact('hotels'));
+        $this->set(compact('users'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Hotel id.
+     * @param string|null $id User id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $hotel = $this->Hotels->get($id, [
-            'contain' => ['Reservations', 'Rooms', 'Users']
+        $user = $this->Users->get($id, [
+            'contain' => ['Hotels', 'Reservations']
         ]);
 
-        $this->set('hotel', $hotel);
+        $this->set('user', $user);
     }
 
     /**
@@ -48,58 +48,58 @@ class HotelsController extends AppController
      */
     public function add()
     {
-        $hotel = $this->Hotels->newEntity();
+        $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $hotel = $this->Hotels->patchEntity($hotel, $this->request->getData());
-            if ($this->Hotels->save($hotel)) {
-                $this->Flash->success(__('The hotel has been saved.'));
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('hotel'));
+        $this->set(compact('user'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Hotel id.
+     * @param string|null $id User id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $hotel = $this->Hotels->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $hotel = $this->Hotels->patchEntity($hotel, $this->request->getData());
-            if ($this->Hotels->save($hotel)) {
-                $this->Flash->success(__('The hotel has been saved.'));
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('hotel'));
+        $this->set(compact('user'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Hotel id.
+     * @param string|null $id User id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $hotel = $this->Hotels->get($id);
-        if ($this->Hotels->delete($hotel)) {
-            $this->Flash->success(__('The hotel has been deleted.'));
+        $user = $this->Users->get($id);
+        if ($this->Users->delete($user)) {
+            $this->Flash->success(__('The user has been deleted.'));
         } else {
-            $this->Flash->error(__('The hotel could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -9,12 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Hotels Model
  *
- * @property \App\Model\Table\RoomsTable|\Cake\ORM\Association\BelongsTo $Rooms
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\BelongsTo $Customers
- * @property \App\Model\Table\ManagersTable|\Cake\ORM\Association\BelongsTo $Managers
- * @property \App\Model\Table\AdminTable|\Cake\ORM\Association\HasMany $Admin
- * @property \App\Model\Table\CustomersTable|\Cake\ORM\Association\HasMany $Customers
- * @property \App\Model\Table\ManagersTable|\Cake\ORM\Association\HasMany $Managers
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\ReservationsTable|\Cake\ORM\Association\HasMany $Reservations
  * @property \App\Model\Table\RoomsTable|\Cake\ORM\Association\HasMany $Rooms
  *
  * @method \App\Model\Entity\Hotel get($primaryKey, $options = [])
@@ -46,25 +42,11 @@ class HotelsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Rooms', [
-            'foreignKey' => 'room_id',
+        $this->belongsTo('Users', [
+            'foreignKey' => 'users_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Customers', [
-            'foreignKey' => 'customer_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Managers', [
-            'foreignKey' => 'manager_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Admin', [
-            'foreignKey' => 'hotel_id'
-        ]);
-        $this->hasMany('Customers', [
-            'foreignKey' => 'hotel_id'
-        ]);
-        $this->hasMany('Managers', [
+        $this->hasMany('Reservations', [
             'foreignKey' => 'hotel_id'
         ]);
         $this->hasMany('Rooms', [
@@ -97,10 +79,9 @@ class HotelsTable extends Table
             ->notEmpty('address');
 
         $validator
-            ->scalar('e-mail')
-            ->maxLength('e-mail', 225)
-            ->requirePresence('e-mail', 'create')
-            ->notEmpty('e-mail');
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
             ->integer('contact_num')
@@ -131,9 +112,8 @@ class HotelsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['room_id'], 'Rooms'));
-        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
-        $rules->add($rules->existsIn(['manager_id'], 'Managers'));
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['users_id'], 'Users'));
 
         return $rules;
     }

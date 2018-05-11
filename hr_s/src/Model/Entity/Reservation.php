@@ -4,21 +4,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Room Entity
+ * Reservation Entity
  *
  * @property int $id
- * @property string $name
- * @property int $room_number
- * @property string $description
- * @property string $images
- * @property bool $room_avi
- * @property \Cake\I18n\FrozenTime $created
+ * @property int $room_id
+ * @property int $user_id
  * @property int $hotel_id
+ * @property int $start_date
+ * @property int $end_date
  *
+ * @property \App\Model\Entity\Room $room
+ * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Hotel $hotel
- * @property \App\Model\Entity\Reservation[] $reservations
  */
-class Room extends Entity
+class Reservation extends Entity
 {
 
     /**
@@ -31,14 +30,13 @@ class Room extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'room_number' => true,
-        'description' => true,
-        'images' => true,
-        'room_avi' => true,
-        'created' => true,
+        'room_id' => true,
+        'user_id' => true,
         'hotel_id' => true,
-        'hotel' => true,
-        'reservations' => true
+        'start_date' => true,
+        'end_date' => true,
+        'room' => true,
+        'user' => true,
+        'hotel' => true
     ];
 }
