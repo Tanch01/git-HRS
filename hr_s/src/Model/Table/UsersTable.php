@@ -98,6 +98,10 @@ class UsersTable extends Table
             ->requirePresence('contact_number', 'create')
             ->notEmpty('contact_number');
 
+        $validator
+            ->scalar('role')
+            ->allowEmpty('role');
+
         return $validator;
     }
 

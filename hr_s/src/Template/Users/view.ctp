@@ -11,8 +11,6 @@
         <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Hotels'), ['controller' => 'Hotels', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Hotel'), ['controller' => 'Hotels', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?> </li>
     </ul>
@@ -45,6 +43,10 @@
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Role') ?></th>
+            <td><?= h($user->role) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr>
@@ -61,45 +63,6 @@
             <td><?= h($user->modified) ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Related Hotels') ?></h4>
-        <?php if (!empty($user->hotels)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Address') ?></th>
-                <th scope="col"><?= __('Email') ?></th>
-                <th scope="col"><?= __('Contact Num') ?></th>
-                <th scope="col"><?= __('Description') ?></th>
-                <th scope="col"><?= __('Images') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col"><?= __('Users Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->hotels as $hotels): ?>
-            <tr>
-                <td><?= h($hotels->id) ?></td>
-                <td><?= h($hotels->name) ?></td>
-                <td><?= h($hotels->address) ?></td>
-                <td><?= h($hotels->email) ?></td>
-                <td><?= h($hotels->contact_num) ?></td>
-                <td><?= h($hotels->description) ?></td>
-                <td><?= h($hotels->images) ?></td>
-                <td><?= h($hotels->created) ?></td>
-                <td><?= h($hotels->modified) ?></td>
-                <td><?= h($hotels->users_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Hotels', 'action' => 'view', $hotels->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Hotels', 'action' => 'edit', $hotels->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Hotels', 'action' => 'delete', $hotels->id], ['confirm' => __('Are you sure you want to delete # {0}?', $hotels->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
     <div class="related">
         <h4><?= __('Related Reservations') ?></h4>
         <?php if (!empty($user->reservations)): ?>

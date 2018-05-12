@@ -16,8 +16,8 @@ use Cake\ORM\Entity;
  * @property int $contact_number
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property string $role
  *
- * @property \App\Model\Entity\Hotel[] $hotels
  * @property \App\Model\Entity\Reservation[] $reservations
  */
 class User extends Entity
@@ -42,7 +42,7 @@ class User extends Entity
         'contact_number' => true,
         'created' => true,
         'modified' => true,
-        'hotels' => true,
+        'role' => true,
         'reservations' => true
     ];
 
